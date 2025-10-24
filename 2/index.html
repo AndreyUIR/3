@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лучше звоните Солу - Веб-разработчик</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --saul-yellow: #FFD700;
+            --saul-dark-yellow: #E6C200;
+            --saul-black: #1A1A1A;
+            --saul-gray: #2D2D2D;
+            --saul-light-gray: #F5F5F5;
+            --saul-red: #C41E3A;
+        }
+
+        body {
+            background-color: var(--saul-light-gray);
+            color: var(--saul-black);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23FFD700" opacity="0.05"/></svg>');
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--saul-black);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            background-color: var(--saul-yellow);
+            color: var(--saul-black);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--saul-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--saul-yellow);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--saul-yellow);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--saul-yellow) 0%, var(--saul-dark-yellow) 100%);
+            color: var(--saul-black);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231A1A1A" opacity="0.05"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--saul-black);
+            color: var(--saul-yellow);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--saul-black);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--saul-black);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--saul-black);
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background-color: var(--saul-yellow);
+            bottom: -10px;
+            left: 0;
+        }
+
+        .about p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 5px solid var(--saul-yellow);
+        }
+
+        .badge {
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            background-color: var(--saul-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 700;
+            transform: rotate(5deg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--saul-gray);
+            color: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            color: var(--saul-yellow);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: var(--saul-black);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--saul-yellow);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            color: var(--saul-yellow);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .service-card p {
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--saul-black);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            flex: 1;
+        }
+
+        .footer-links {
+            flex: 1;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-links h3 {
+            color: var(--saul-yellow);
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--saul-yellow);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <div>
+                        <div class="logo-text">Сол Гудман</div>
+                        <div class="tagline">Веб-разработчик & Юридический консультант</div>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about">Обо мне</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Привет! Я Сол Гудман — Веб-разработчик</h1>
+                <h2>Создаю современные веб-приложения и юридические сайты</h2>
+                <p>Когда жизнь дает вам лимоны, не делайте лимонад — создайте веб-сайт, который заставит лимоны платить вам! С более чем 10-летним опытом в веб-разработке и юридическом консалтинге, я помогу вашему бизнесу выделиться в цифровом пространстве.</p>
+                <a href="#contact" class="cta-button">Связаться со мной</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Обо мне</h2>
+                    <p>Меня зовут Сол Гудман, и я профессиональный веб-разработчик с юридическим образованием. Я специализируюсь на создании современных, отзывчивых веб-сайтов и веб-приложений, которые не только выглядят великолепно, но и работают безупречно.</p>
+                    <p>Мой уникальный подход сочетает технические навыки веб-разработки с глубоким пониманием юридических аспектов цифрового бизнеса. Это позволяет мне создавать решения, которые не только эффективны, но и соответствуют всем правовым нормам.</p>
+                    <p>Я верю, что каждый заслуживает качественное представительство в интернете, независимо от размера бизнеса или бюджета. Давайте создадим что-то великое вместе!</p>
+                </div>
+                <div class="about-image">
+                    <div class="badge">ЛУЧШЕ ПОЗВОНИТЕ СОЛУ!</div>
+                    <img src="https://i.pinimg.com/originals/50/a9/62/50a962d7021cd39dd164480cda8627b9.jpg" alt="Сол Гудман - Веб-разработчик" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Мои Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Веб-разработка</h3>
+                    <p>Создание современных, отзывчивых веб-сайтов и веб-приложений с использованием передовых технологий.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Юридические консультации</h3>
+                    <p>Консультации по правовым аспектам ведения онлайн-бизнеса, защита интеллектуальной собственности.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO оптимизация</h3>
+                    <p>Повышение видимости вашего сайта в поисковых системах для привлечения большего количества клиентов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">S</div>
+                        <div>
+                            <div class="logo-text">Сол Гудман</div>
+                            <div class="tagline">Веб-разработчик & Юридический консультант</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <h3>Контакты</h3>
+                        <ul>
+                            <li><i class="fas fa-phone"></i> +7 (123) 456-7890</li>
+                            <li><i class="fas fa-envelope"></i> saul@goodman.dev</li>
+                            <li><i class="fas fa-map-marker-alt"></i> г. Альбукерке</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Быстрые ссылки</h3>
+                        <ul>
+                            <li><a href="#about">Обо мне</a></li>
+                            <li><a href="#services">Услуги</a></li>
+                            <li><a href="#contact">Контакты</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Сол Гудман. Все права защищены. Лучше позвоните Солу!</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
